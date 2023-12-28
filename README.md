@@ -3,15 +3,22 @@
 **Random crap** for parsing DistroWatch's feeds.
 
 ## How to
+**Latest distros**
 ```bash
-$ python3 distrorelease.py # latest distributions
+$ python3 distrorelease.py
 ```
+
+**Latest packages**
 ```bash
-$ python3 packagerelease.py # latest packages
+$ python3 packagerelease.py
 ```
+
+**Detailed distro release news**
 ```bash
-$ python3 news.py # homepage news
+$ python3 news.py
 ```
+
+**Headlines**
 ```bash
 $ python3 headlines.py # news headlines
 ```
