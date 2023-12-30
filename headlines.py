@@ -22,6 +22,7 @@ def parse_news_headlines_xml(url):
         items = soup.find_all('item')
         for item in items:
             title = item.find('title').text.strip()
+            print(title)
             link = item.find('link').text.strip()
             pub_date = item.find('pubDate').text.strip()
             pub_date_obj = datetime.strptime(pub_date, "%a, %d %b %Y %H:%M:%S %z")
