@@ -16,7 +16,7 @@ def save_distributions_json_to_file(json_data, file_path):
 def parse_distributions_xml(url):
     response = requests.get(url)
     if response.status_code == 200:
-        soup = BeautifulSoup(response.content, 'xml')
+        soup = BeautifulSoup(response.content, 'lxml')
 
         distributions = []
         items = soup.find_all('item')
