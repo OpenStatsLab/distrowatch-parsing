@@ -62,7 +62,7 @@ def get_distro_options(url):
                         "distro": distro_name,
                         "codename": codename,
                         "url": url,
-                        "logo": imgurl + ".png",
+                        "logo": imgurl,
                         "screenshot": scrurl,
                         "homepage": homepage,
                         "ostype": os_type
