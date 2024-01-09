@@ -17,7 +17,7 @@ def get_news_items_as_json(url):
     base_url = 'https://distrowatch.com/?newsid='
     response = requests.get(url)
     if response.status_code == 200:
-        soup = BeautifulSoup(response.content, 'xml')
+        soup = BeautifulSoup(response.content, 'lxml')
 
         news_items = []
         items = soup.find_all('item')
