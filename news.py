@@ -50,7 +50,7 @@ def get_news_items_as_json(url):
 
             news_item = {
                 'title': title,
-                'link': complete_url,
+                'link': full_link,
                 'description': description,
                 'date': formatted_date
             }
