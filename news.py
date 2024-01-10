@@ -9,9 +9,9 @@ def save_news_json_to_file(json_data, file_path):
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         with open(file_path, 'w') as file:
             file.write(json_data)
-        print(f"JSON data saved to {file_path}")
+        print('JSON data saved to {file_path}')
     except IOError:
-        print("Failed to save JSON data to file.")
+        print('Failed to save JSON data to file.')
 
 def get_news_items_as_json(url):
     base_url = 'https://distrowatch.com/?newsid='
@@ -38,20 +38,21 @@ def get_news_items_as_json(url):
             if news_response.status_code == 200:
                 news_soup = BeautifulSoup(news_response.content, 'html.parser')
                 description = news_soup.find('td', class_='NewsText').get_text().strip()
+                description = description.replace('"', "'")  # Replace double quotes with single quotes
             else:
-                description = "Description not available"
+                description = 'Description not available'
 
             # Convert date string to datetime object
-            date_obj = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S%z")
+            date_obj = datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%S%z')
 
             # Convert datetime object to the desired date format
             formatted_date = date_obj.strftime('%d/%m/%Y, %H:%M')
 
             news_item = {
-                "title": title,
-                "link": complete_url,
-                "description": description,
-                "date": formatted_date
+                'title': title,
+                'link': complete_url,
+                'description': description,
+                'date': formatted_date
             }
             news_items.append(news_item)
 
@@ -60,9 +61,9 @@ def get_news_items_as_json(url):
     else:
         return None
 
-xml_url = "https://distrowatch.com/news/dw.xml"
+xml_url = 'https://distrowatch.com/news/dw.xml'
 json_news = get_news_items_as_json(xml_url)
 if json_news:
-    save_news_json_to_file(json_news, "parsed/news.json")
+    save_news_json_to_file(json_news, 'parsed/news.json')
 else:
-    print("Failed to fetch XML data.")
+    print('Failed to fetch XML data.')
