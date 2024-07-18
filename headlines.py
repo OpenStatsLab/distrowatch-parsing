@@ -3,7 +3,7 @@ import json
 from bs4 import BeautifulSoup
 from datetime import datetime
 import os
-
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.3'}
 def save_news_headlines_to_file(json_data, file_path):
     try:
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
@@ -14,7 +14,7 @@ def save_news_headlines_to_file(json_data, file_path):
         print("Failed to save JSON data to file.")
 
 def parse_news_headlines_xml(url):
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
     if response.status_code == 200:
         soup = BeautifulSoup(response.content, 'lxml')
 

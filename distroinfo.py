@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import json
 import os
 
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.3'}
+
 def in_between(string,x,y):
     return string[string.index(x)+1:string.index(y)]
 
@@ -16,7 +18,7 @@ def save_distro_info_to_file(json_data, file_path):
         print("Failed to save JSON data to file.")
 
 def get_distro_info(distro_url):
-    response = requests.get(distro_url)
+    response = requests.get(distro_url, headers=headers)
     if response.status_code == 200:
         soup = BeautifulSoup(response.content, 'html.parser')
         
@@ -43,7 +45,7 @@ def get_distro_info(distro_url):
         return 'N/A', 'N/A', 'N/A'
 
 def get_distro_options(url):
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
     if response.status_code == 200:
         soup = BeautifulSoup(response.content, 'html.parser')
         select_list = soup.find('select', {'name': 'distribution'})
